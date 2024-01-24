@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#1B1D1F]">
+  <div class="bg-black-pearl">
     <HomePage />
   </div>
 </template>
