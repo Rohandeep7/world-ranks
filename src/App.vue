@@ -1,11 +1,11 @@
 <template>
   <div class="bg-black-pearl">
-    <HomePage />
+    <Home />
   </div>
 </template>
 
 <script setup>
-import HomePage from "./pages/HomePage.vue";
+import Home from "./pages/Home.vue";
 </script>
 
 <style scoped></style>

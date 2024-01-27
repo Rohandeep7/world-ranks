@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "be-vietnam-pro": ["Be Vietnam Pro", "sans-serif"],
+        "be-vietnam-pro": ["Be Vietnam Pro"],
       },
       colors: {
         "black-pearl": "#1B1D1F",
