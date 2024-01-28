@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex bg-bunker gap-3 rounded-xl justify-start items-center cursor-pointer px-3 py-[10px] w-full max-w-[341px]"
+    class="flex bg-bunker gap-3 rounded-xl justify-start items-center cursor-pointer px-3 py-[10px] w-full max-w-[360px]"
   >
     <div class="">
       <img :src="SEARCH_ICON" alt="" />
