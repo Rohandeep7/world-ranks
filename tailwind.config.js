@@ -13,6 +13,9 @@ export default {
         raven: "#6C727F",
         "link-water": "#D2D5DA",
       },
+      content: {
+        arrowDownIcon: 'url("assets/ExpandDown.svg")',
+      },
     },
   },
   plugins: [],
