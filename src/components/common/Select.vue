@@ -23,8 +23,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 const props = defineProps({
   label: {
     type: String,
@@ -37,7 +35,7 @@ const props = defineProps({
   },
 });
 
-const selectedValue = ref(props.options[0].value);
+const selectedValue = defineModel();
 </script>
 
 <style lang="scss" scoped></style>
