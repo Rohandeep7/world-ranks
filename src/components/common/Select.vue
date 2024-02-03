@@ -12,7 +12,7 @@
         v-model="selectedValue"
         name="sort-by"
         id="sort-by"
-        class="bg-black-pearl border-2 border-bunker text-sm font-semibold text-link-water rounded-xl focus:border-link-water outline-none block w-full px-3 py-3 tracking-wider cursor-pointer appearance-none"
+        class="bg-black-pearl border-2 border-bunker font-semibold text-sm text-link-water rounded-xl focus:border-link-water outline-none block w-full px-3 py-3 tracking-wider cursor-pointer appearance-none"
       >
         <option v-for="option in options" :value="option.value">
           {{ option.text }}

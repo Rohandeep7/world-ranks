@@ -12,3 +12,12 @@ export const SORT_BY_OPTIONS = [
     value: "area",
   },
 ];
+
+export const REGIONS = [
+  "Americas",
+  "Antractic",
+  "Africa",
+  "Asia",
+  "Europe",
+  "Oceania",
+];
