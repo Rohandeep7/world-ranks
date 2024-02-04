@@ -21,3 +21,5 @@ export const REGIONS = [
   "Europe",
   "Oceania",
 ];
+
+export const COUNTRY_STATUS = ["Member of the United Nations", "Independent"];

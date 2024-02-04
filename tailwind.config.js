@@ -15,6 +15,7 @@ export default {
       },
       content: {
         arrowDownIcon: 'url("assets/ExpandDown.svg")',
+        doneRound: 'url("assets/DoneRound.svg")',
       },
     },
   },

@@ -2,7 +2,7 @@
   <div class="flex flex-col w-full gap-2">
     <label
       for="sort-by"
-      class="font-be-vietnam-pro text-sm font-semibold text-raven block"
+      class="font-be-vietnam-pro text-xs font-semibold text-raven block"
       >{{ label }}</label
     >
     <div
