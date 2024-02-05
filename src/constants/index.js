@@ -23,3 +23,7 @@ export const REGIONS = [
 ];
 
 export const COUNTRY_STATUS = ["Member of the United Nations", "Independent"];
+
+export const BASE_URL = {
+  REST_COUNTRIES_API: import.meta.env.VITE_REST_COUNTRIES_API_BASE_URL,
+};

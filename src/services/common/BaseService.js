@@ -1,4 +1,4 @@
-import BaseModel from "../../../models/common/models/BaseModel";
+import BaseModel from "../../models/common/models/BaseModel";
 
 export default class BaseService {
   constructor(model = {}) {
