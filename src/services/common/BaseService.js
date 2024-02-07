@@ -1,4 +1,4 @@
-import BaseModel from "../../models/common/models/BaseModel";
+import BaseModel from "../../models/common/BaseModel";
 
 export default class BaseService {
   constructor(model = {}) {
@@ -15,6 +15,9 @@ export default class BaseService {
    * @returns
    */
   convertToModel(data, model) {
+    if (Array.isArray(data)) {
+      return model.mapModels(data);
+    }
     return model.mapModel(data);
   }
 }

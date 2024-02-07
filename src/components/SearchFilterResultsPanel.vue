@@ -13,12 +13,12 @@
             <FilterPanel @on-filter-change="filterChangeHandler" />
           </div>
           <div class="sm:w-4/5">
-            <div v-if="isLoading">Loading...</div>
+            <!-- <div v-if="isLoading">Loading...</div>
             <ul class="flex w-full flex-wrap text-white gap-2" v-else>
               <li v-for="country in listOfCountries">
                 {{ country.name.common }}
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </section>

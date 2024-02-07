@@ -1,6 +1,7 @@
 import BaseService from "./common/BaseService";
 import axiosService from "./common/AxiosService";
 import { BASE_URL } from "../constants";
+import CountryDetailsModel from "../models/CountryDetailsModel";
 class CountryService extends BaseService {
   constructor(baseUrl) {
     super();
@@ -10,7 +11,7 @@ class CountryService extends BaseService {
   async getAllCountries(params) {
     const response = await axiosService.get("all");
 
-    return response;
+    return this.convertToModel(response, CountryDetailsModel);
   }
 }
 
