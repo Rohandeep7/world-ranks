@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <Image img-class="w-full h-[28vh] sm:h-[35vh] object-cover" :src="imgSrc" />
+    <Image img-class="w-full h-[25vh] sm:min-h-60 object-cover" :src="imgSrc" />
     <slot name="content">
       <div
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"

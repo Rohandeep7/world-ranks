@@ -8,7 +8,7 @@
         >Region</label
       >
       <ul class="flex flex-row gap-x-2.5 sm:gap-x-3 gap-y-3.5 flex-wrap">
-        <li v-for="(region, index) in REGIONS">
+        <li v-for="(region, index) in REGIONS" :key="index">
           <Checkbox
             v-model="selectedRegions"
             :is-check-box-visible="false"
@@ -27,7 +27,7 @@
         >Status</label
       >
       <ul class="flex flex-col gap-2">
-        <li v-for="(status, index) in COUNTRY_STATUS">
+        <li v-for="(status, index) in COUNTRY_STATUS" :key="index">
           <Checkbox
             v-model="selectedStatuses"
             :label="status"

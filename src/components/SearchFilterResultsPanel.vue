@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute sm:top-1/2 sm:left-1/2 w-full sm:max-w-[90vw] bg-black-pearl sm:border-2 sm:border-[#282B30] rounded-lg sm:-translate-x-1/2 sm:-translate-y-[5%]"
+    class="absolute sm:left-1/2 w-full sm:max-w-[90vw] bg-black-pearl sm:border-2 sm:border-bunker sm:rounded-lg sm:-translate-x-1/2 -translate-y-6 sm:-translate-y-10"
   >
     <div class="m-6">
       <section class="flex flex-col gap-6">
@@ -12,55 +12,51 @@
           <div class="w-full sm:w-1/4">
             <FilterPanel @on-filter-change="filterChangeHandler" />
           </div>
-          <div
-            class="sm:w-4/5 max-h-screen text-link-water font-be-vietnam-pro"
-          >
-            <div class="overflow-x-auto shadow-md sm:rounded-lg">
-              <table class="w-full max-h-40">
-                <thead
-                  class="text-xs text-raven border-b-2 border-bunker font-semibold text-left"
-                >
-                  <tr>
-                    <th
-                      scope="col"
-                      class="py-3"
-                      v-for="(field, idx) in RESULT_PANEL_TABLE_FIELDS"
-                      :key="idx"
-                    >
-                      {{ field }}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    class=""
-                    v-for="(country, idx) in getAllCountriesEvent.result.value"
+          <div class="overflow-auto overflow-x-hidden font-be-vietnam-pro">
+            <table class="block h-[900px]">
+              <thead
+                class="top-0 left-0 text-xs text-raven border-b-2 border-bunker font-semibold text-left"
+              >
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-8 py-3"
+                    v-for="(field, idx) in RESULT_PANEL_TABLE_FIELDS"
                     :key="idx"
                   >
-                    <td class="py-4">
-                      <Image
-                        :width="36"
-                        :height="20"
-                        v-if="country.flags"
-                        :src="country.flags.png"
-                      />
-                    </td>
-                    <td class="py-4">
-                      {{ country.name.common }}
-                    </td>
-                    <td class="py-4">
-                      {{ country.population }}
-                    </td>
-                    <td class="py-4">
-                      {{ country.area }}
-                    </td>
-                    <td class="py-4">
-                      {{ country.region }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    {{ field }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="text-link-water">
+                <tr
+                  class=""
+                  v-for="(country, idx) in getAllCountriesEvent.result.value"
+                  :key="idx"
+                >
+                  <td class="px-6 sm:px-8 py-4">
+                    <Image
+                      :width="36"
+                      :height="20"
+                      v-if="country.flags"
+                      :src="country.flags.png"
+                    />
+                  </td>
+                  <td class="px-6 sm:px-8 py-4">
+                    {{ country.name.common }}
+                  </td>
+                  <td class="px-6 sm:px-8 py-4">
+                    {{ country.population }}
+                  </td>
+                  <td class="px-6 sm:px-8 py-4">
+                    {{ country.area }}
+                  </td>
+                  <td class="px-6 sm:px-8 py-4">
+                    {{ country.region }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
