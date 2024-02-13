@@ -13,6 +13,12 @@ class CountryService extends BaseService {
 
     return this.convertToModel(response, CountryDetailsModel);
   }
+
+  async searchCountries(params) {
+    const response = await axiosService.get(`name/${params.name}`);
+    console.log("called");
+    return this.convertToModel(response, CountryDetailsModel);
+  }
 }
 
 const countryService = new CountryService(BASE_URL.REST_COUNTRIES_API);

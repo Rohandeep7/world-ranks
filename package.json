@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.2",
     "axios": "^1.6.7",
     "oh-vue-icons": "^1.0.0-rc3",
     "v-lazy-image": "^2.1.1",

@@ -5,7 +5,7 @@
     <div class="m-6">
       <section class="flex flex-col gap-6">
         <div class="search-area">
-          <SearchArea />
+          <SearchArea @updateInputText="searchCountries" />
         </div>
 
         <div class="flex flex-col sm:flex-row justify-start gap-4">
@@ -13,7 +13,7 @@
             <FilterPanel @on-filter-change="filterChangeHandler" />
           </div>
           <div class="overflow-auto overflow-x-hidden font-be-vietnam-pro">
-            <table class="block h-[900px]">
+            <table class="block h-[600px]">
               <thead
                 class="top-0 left-0 text-xs text-raven border-b-2 border-bunker font-semibold text-left"
               >
@@ -36,6 +36,7 @@
                 >
                   <td class="px-6 sm:px-8 py-4">
                     <Image
+                      imgClass="rounded-sm"
                       :width="36"
                       :height="20"
                       v-if="country.flags"
@@ -79,9 +80,24 @@ const filterChangeHandler = (filters) => {
 const getAllCountriesEvent = usePromise({
   target: (params) => countryService.getAllCountries(params),
   onSuccess: (response) => {
-    console.log("Countriesss", response);
+    // console.log("Countriesss", response);
   },
 });
+
+const searchCountriesEvent = usePromise({
+  target: (params) => countryService.searchCountries(params),
+  onSuccess: (response) => {
+    console.log("Searched Country", response);
+  },
+});
+
+const searchCountries = (searchText) => {
+  console.log("Fromfsafsa", searchText);
+  const params = {
+    name: searchText,
+  };
+  searchCountriesEvent.run(params);
+};
 
 getAllCountriesEvent.run();
 </script>

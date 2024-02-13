@@ -7,12 +7,18 @@
     >
       {{ "Found 234 countries" }}
     </h1>
-    <TextField />
+    <TextField @on-debounced-trigger="updateInputText" />
   </div>
 </template>
 
 <script setup>
 import TextField from "./common/TextField.vue";
+
+const emit = defineEmits(["onTextChange"]);
+
+const updateInputText = (value) => {
+  emit("onTextChange", value);
+};
 </script>
 
 <style lang="scss" scoped></style>
