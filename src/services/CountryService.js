@@ -15,8 +15,8 @@ class CountryService extends BaseService {
   }
 
   async searchCountries(params) {
-    const response = await axiosService.get(`name/${params.name}`);
-    console.log("called");
+    const url = params.name ? `name/${params.name}` : "all";
+    const response = await axiosService.get(url, {});
     return this.convertToModel(response, CountryDetailsModel);
   }
 }

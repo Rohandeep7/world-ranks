@@ -24,7 +24,6 @@ const emit = defineEmits(["onDebouncedTrigger"]);
 const inputValue = ref("");
 
 const debouncedInputTrigger = useDebounceFn((e) => {
-  // console.log(e.target.value);
   inputValue.value = e.target.value;
   emit("onDebouncedTrigger", inputValue.value);
 }, 1000);

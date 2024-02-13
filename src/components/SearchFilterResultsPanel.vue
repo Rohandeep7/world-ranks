@@ -5,15 +5,20 @@
     <div class="m-6">
       <section class="flex flex-col gap-6">
         <div class="search-area">
-          <SearchArea @updateInputText="searchCountries" />
+          <SearchArea
+            :numberOfCountriesFound="countries.length"
+            @on-text-change="searchCountries"
+          />
         </div>
 
         <div class="flex flex-col sm:flex-row justify-start gap-4">
           <div class="w-full sm:w-1/4">
             <FilterPanel @on-filter-change="filterChangeHandler" />
           </div>
-          <div class="overflow-auto overflow-x-hidden font-be-vietnam-pro">
-            <table class="block h-[600px]">
+          <div
+            class="w-full overflow-auto overflow-x-hidden font-be-vietnam-pro"
+          >
+            <table class="w-full block max-h-[600px]">
               <thead
                 class="top-0 left-0 text-xs text-raven border-b-2 border-bunker font-semibold text-left"
               >
@@ -29,16 +34,12 @@
                 </tr>
               </thead>
               <tbody class="text-link-water">
-                <tr
-                  class=""
-                  v-for="(country, idx) in getAllCountriesEvent.result.value"
-                  :key="idx"
-                >
+                <tr class="" v-for="(country, idx) in countries" :key="idx">
                   <td class="px-6 sm:px-8 py-4">
                     <Image
                       imgClass="rounded-sm"
-                      :width="36"
-                      :height="20"
+                      width="36"
+                      height="20"
                       v-if="country.flags"
                       :src="country.flags.png"
                     />
@@ -66,6 +67,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import SearchArea from "./SearchArea.vue";
 import FilterPanel from "./FilterPanel.vue";
 import Image from "./common/Image.vue";
@@ -73,6 +75,7 @@ import countryService from "../services/CountryService";
 import usePromise from "../composables/common/use-promise";
 import { RESULT_PANEL_TABLE_FIELDS } from "../constants/index";
 
+const countries = ref([]);
 const filterChangeHandler = (filters) => {
   console.log(Array.isArray(filters));
 };
@@ -80,19 +83,18 @@ const filterChangeHandler = (filters) => {
 const getAllCountriesEvent = usePromise({
   target: (params) => countryService.getAllCountries(params),
   onSuccess: (response) => {
-    // console.log("Countriesss", response);
+    countries.value = response;
   },
 });
 
 const searchCountriesEvent = usePromise({
   target: (params) => countryService.searchCountries(params),
   onSuccess: (response) => {
-    console.log("Searched Country", response);
+    countries.value = response;
   },
 });
 
 const searchCountries = (searchText) => {
-  console.log("Fromfsafsa", searchText);
   const params = {
     name: searchText,
   };

@@ -5,7 +5,7 @@
     <h1
       class="font-semibold font-be-vietnam-pro text-raven text-sm sm:text-base"
     >
-      {{ "Found 234 countries" }}
+      {{ `Found ${numberOfCountriesFound} countries` }}
     </h1>
     <TextField @on-debounced-trigger="updateInputText" />
   </div>
@@ -14,6 +14,12 @@
 <script setup>
 import TextField from "./common/TextField.vue";
 
+const props = defineProps({
+  numberOfCountriesFound: {
+    type: Number,
+    required: true,
+  },
+});
 const emit = defineEmits(["onTextChange"]);
 
 const updateInputText = (value) => {
