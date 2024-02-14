@@ -7,7 +7,7 @@
         <div class="search-area">
           <SearchArea
             :numberOfCountriesFound="countries.length"
-            @on-text-change="searchCountries"
+            @on-text-change="textChangeHandler"
           />
         </div>
 
@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import SearchArea from "./SearchArea.vue";
 import FilterPanel from "./FilterPanel.vue";
 import Image from "./common/Image.vue";
@@ -76,8 +76,14 @@ import usePromise from "../composables/common/use-promise";
 import { RESULT_PANEL_TABLE_FIELDS } from "../constants/index";
 
 const countries = ref([]);
-const filterChangeHandler = (filters) => {
-  console.log(Array.isArray(filters));
+const filters = ref([]);
+const searchText = ref("");
+const filterChangeHandler = (updatedFilters) => {
+  filters.value = updatedFilters;
+};
+
+const textChangeHandler = (text) => {
+  searchText.value = text;
 };
 
 const getAllCountriesEvent = usePromise({
@@ -87,21 +93,11 @@ const getAllCountriesEvent = usePromise({
   },
 });
 
-const searchCountriesEvent = usePromise({
-  target: (params) => countryService.searchCountries(params),
-  onSuccess: (response) => {
-    countries.value = response;
-  },
-});
-
-const searchCountries = (searchText) => {
-  const params = {
-    name: searchText,
-  };
-  searchCountriesEvent.run(params);
-};
-
 getAllCountriesEvent.run();
+
+watch([searchText, filters], (newValue) => {
+  console.log(newValue);
+});
 </script>
 
 <style lang="scss" scoped></style>

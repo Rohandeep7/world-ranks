@@ -15,7 +15,7 @@ export const SORT_BY_OPTIONS = [
 
 export const REGIONS = [
   "Americas",
-  "Antractic",
+  "Antarctic",
   "Africa",
   "Asia",
   "Europe",
