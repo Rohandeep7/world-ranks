@@ -4,10 +4,18 @@
   >
     <div class="m-6">
       <section class="flex flex-col gap-6">
-        <div class="search-area">
-          <SearchArea
-            :numberOfCountriesFound="countries.length"
-            @on-text-change="textChangeHandler"
+        <div
+          id="search-area"
+          class="flex items-center flex-col-reverse sm:flex-row gap-4 justify-center sm:justify-between"
+        >
+          <h1
+            class="font-semibold font-be-vietnam-pro text-raven text-sm sm:text-base"
+          >
+            {{ `Found ${numberOfCountriesFound} countries` }}
+          </h1>
+          <TextField
+            :is-loading="getAllCountriesEvent.isLoading.value"
+            @on-debounced-trigger="textChangeHandler"
           />
         </div>
 
@@ -18,47 +26,10 @@
           <div
             class="w-full overflow-auto overflow-x-hidden font-be-vietnam-pro"
           >
-            <table class="w-full block max-h-[600px]">
-              <thead
-                class="top-0 left-0 text-xs text-raven border-b-2 border-bunker font-semibold text-left"
-              >
-                <tr>
-                  <th
-                    scope="col"
-                    class="px-8 py-3"
-                    v-for="(field, idx) in RESULT_PANEL_TABLE_FIELDS"
-                    :key="idx"
-                  >
-                    {{ field }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="text-link-water">
-                <tr class="" v-for="(country, idx) in countries" :key="idx">
-                  <td class="px-6 sm:px-8 py-4">
-                    <Image
-                      imgClass="rounded-sm"
-                      width="36"
-                      height="20"
-                      v-if="country.flags"
-                      :src="country.flags.png"
-                    />
-                  </td>
-                  <td class="px-6 sm:px-8 py-4">
-                    {{ country.name.common }}
-                  </td>
-                  <td class="px-6 sm:px-8 py-4">
-                    {{ country.population }}
-                  </td>
-                  <td class="px-6 sm:px-8 py-4">
-                    {{ country.area }}
-                  </td>
-                  <td class="px-6 sm:px-8 py-4">
-                    {{ country.region }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <Table
+              :header-fields="RESULT_PANEL_TABLE_FIELDS"
+              :data-fields="countries"
+            />
           </div>
         </div>
       </section>
@@ -67,12 +38,12 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import SearchArea from "./SearchArea.vue";
+import { ref, watch, computed } from "vue";
+import TextField from "./common/TextField.vue";
 import FilterPanel from "./FilterPanel.vue";
-import Image from "./common/Image.vue";
 import countryService from "../services/CountryService";
 import usePromise from "../composables/common/use-promise";
+import Table from "./common/Table.vue";
 import { RESULT_PANEL_TABLE_FIELDS } from "../constants/index";
 
 const countries = ref([]);
@@ -85,6 +56,8 @@ const filterChangeHandler = (updatedFilters) => {
 const textChangeHandler = (text) => {
   searchText.value = text;
 };
+
+const numberOfCountriesFound = computed(() => countries.value.length);
 
 const getAllCountriesEvent = usePromise({
   target: (params) => countryService.getAllCountries(params),
