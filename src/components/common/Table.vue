@@ -15,7 +15,12 @@
       </tr>
     </thead>
     <tbody class="text-link-water">
-      <tr class="" v-for="(country, idx) in dataFields" :key="idx">
+      <tr
+        class="cursor-pointer hover:bg-bunker"
+        v-for="(country, idx) in dataFields"
+        :key="idx"
+        @click="onDataFieldClickHandler(country.commonName)"
+      >
         <td class="px-6 sm:px-8 py-4">
           <Image
             imgClass="rounded-sm"
@@ -44,6 +49,7 @@
 
 <script setup>
 import Image from "./Image.vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   headerFields: {
@@ -55,6 +61,17 @@ const props = defineProps({
     required: false,
   },
 });
+
+const router = useRouter();
+
+const onDataFieldClickHandler = (name) => {
+  router.push({
+    name: "country",
+    params: {
+      name: name,
+    },
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>

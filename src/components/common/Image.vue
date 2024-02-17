@@ -14,7 +14,6 @@
 
 <script setup>
 import VLazyImage from "v-lazy-image";
-import { Transition } from "vue";
 
 const props = defineProps({
   src: {
@@ -45,7 +44,6 @@ const props = defineProps({
 </script>
 
 <style scoped>
-@import "../../transitions.scss";
 .v-lazy-image {
   filter: blur(4px);
   transition: filter 0.7s;

@@ -252,4 +252,12 @@ export default class CountryDetailsModel extends BaseModel {
     this.capitalInfo = model.capitalInfo;
     this.postalCode = model.postalCode;
   }
+
+  get commonName() {
+    return this?.name?.common;
+  }
+
+  get officialName() {
+    return this?.name?.official;
+  }
 }
